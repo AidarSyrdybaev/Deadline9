@@ -14,6 +14,12 @@ namespace DeadLine9.DAL.Entities
 
         public string LastName { get; set; }
 
+        public bool IsMen { get; set; } 
+
+        public Group Group { get; set; }
+
         public int GroupId { get; set; }
+
+        public ICollection<Point> Points { get; set; }
     }
 }

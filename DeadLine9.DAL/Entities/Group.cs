@@ -13,5 +13,9 @@ namespace DeadLine9.DAL.Entities
         public int SpecialityId { get; set; }
 
         public Specialty Specialty { get; set; }
+
+        public ICollection<Student> Students { get; set; }
+
+        public ICollection<Lecture> Lectures { get; set; }
     }
 }

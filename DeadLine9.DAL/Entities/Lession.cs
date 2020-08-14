@@ -10,5 +10,6 @@ namespace DeadLine9.DAL.Entities
 
         public string Name { get; set; }
 
+        public ICollection<Lecture> Lectures { get; set; }
     }
 }
