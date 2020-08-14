@@ -10,7 +10,7 @@ namespace DeadLine9.DAL.Entities
 
         public int Semester { get; set; }
 
-        public int Ball { get; set }
+        public int Ball { get; set; }
 
         public Student Student { get; set; }
 
