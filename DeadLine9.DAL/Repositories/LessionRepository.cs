@@ -7,9 +7,9 @@ using System.Text;
 
 namespace DeadLine9.DAL.Repositories
 {
-    public class LessionRepositoryy : Repository<Lession>, ILessionRepository
+    public class LessionRepository : Repository<Lession>, ILessionRepository
     {
-        public LessionRepositoryy(ApplicationDbContext applicationDbContext) : base(applicationDbContext)
+        public LessionRepository(ApplicationDbContext applicationDbContext) : base(applicationDbContext)
         {
             entities = applicationDbContext.Lessions;
         }
