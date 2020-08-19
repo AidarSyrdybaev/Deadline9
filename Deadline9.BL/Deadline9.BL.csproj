@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DeadLine9.DAL\DeadLine9.DAL.csproj" />
+    <ProjectReference Include="..\Deadline9.Models\Deadline9.Models.csproj" />
+  </ItemGroup>
+
+</Project>
