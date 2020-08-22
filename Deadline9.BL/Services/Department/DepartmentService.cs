@@ -35,7 +35,7 @@ namespace Deadline9.BL.Services
             }
         }
 
-        public void Create(DepartmentModel model)
+        public void Create(DepartmentCreateModel model)
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {

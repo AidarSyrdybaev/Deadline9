@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Deadline9.Models.Department
 {
-    public class DepartmentDetailsModel
+    public class DepartmentCreateModel
     {
+        public string Name { get; set; }
     }
 }

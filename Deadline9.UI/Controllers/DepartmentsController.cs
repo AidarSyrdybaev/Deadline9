@@ -7,16 +7,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DeadLine9.DAL.Context;
 using DeadLine9.DAL.Entities;
+using Deadline9.BL.Services;
+using Deadline9.Models.Department;
 
 namespace Deadline9.UI.Controllers
 {
     public class DepartmentsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private IDepartmentService _DepartmentService { get; set; }
 
-        public DepartmentsController(ApplicationDbContext context)
+        public DepartmentsController(IDepartmentService departmentService)
         {
-            _context = context;
+            _DepartmentService = departmentService;
         }
 
        
@@ -43,10 +45,10 @@ namespace Deadline9.UI.Controllers
 
       
         [HttpPost]
-        public async Task<IActionResult> Create(Department department)
+        public async Task<IActionResult> Create(DepartmentCreateModel department)
         {
-
-            return View(department);
+            _DepartmentService.Create(department);
+            return View();
         }
 
         public async Task<IActionResult> Edit(int? id)

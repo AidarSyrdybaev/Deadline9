@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoMapper;
+using Deadline9.BL.Services;
+using Deadline9.BL.AutoMapper.Mappings;
 
 namespace Deadline9.UI
 {
@@ -44,9 +46,10 @@ namespace Deadline9.UI
             });
             services.AddSingleton<IUnitOfWorkFactory, UnitOfWorkFactory>();
 
-            
+            services.AddScoped<IDepartmentService, DepartmentService>();
 
             services.AddRazorPages();
+            Mapper.Initialize(m => m.AddProfile(new MappingProfile()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
