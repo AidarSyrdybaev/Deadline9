@@ -36,7 +36,7 @@ namespace Deadline9.BL.Services
             }
         }
 
-        public SpecialtyEditModel GetSpecialityEditModel(int Id)
+        public SpecialtyEditModel GetEditModel(int Id)
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
@@ -64,6 +64,15 @@ namespace Deadline9.BL.Services
             using (var _uow = _unitOfWorkFactory.Create())
             {
                 return Mapper.Map<List<SpecialtyIndexModel>>(_uow.Specialities.GetAll());
+            }
+        }
+
+        public SelectList GetSelectListItems()
+        {
+            using (var _uow = _unitOfWorkFactory.Create())
+            {
+                SelectList Departments = new SelectList(_uow.Specialities.GetAll(), "Id", "Name");
+                return Departments;
             }
         }
     }

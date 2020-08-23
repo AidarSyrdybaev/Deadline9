@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Student\" />
-    <Folder Include="Group\" />
+    <ProjectReference Include="..\DeadLine9.DAL\DeadLine9.DAL.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿using Deadline9.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +12,7 @@ namespace Deadline9.BL.Services
 
         public void Edit(SpecialtyEditModel model);
 
-        public SpecialtyEditModel GetSpecialityEditModel(int Id);
+        public SpecialtyEditModel GetEditModel(int Id);
 
         public void Create(SpecialtyCreateModel model);
 
@@ -19,6 +20,6 @@ namespace Deadline9.BL.Services
 
         public List<SpecialtyIndexModel> GetAll();
 
-
+        public SelectList GetSelectListItems();
     }
 }

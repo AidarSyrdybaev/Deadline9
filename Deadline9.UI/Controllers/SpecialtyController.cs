@@ -50,7 +50,7 @@ namespace Deadline9.UI.Controllers
         public ActionResult Edit(int id)
         {
             ViewBag.Departments = _DepartmentService.GetDepartmentsSelectListItems();
-            var Model = _SpecialtyService.GetSpecialityEditModel(id);
+            var Model = _SpecialtyService.GetEditModel(id);
             return View(Model);
         }
         [HttpPost]

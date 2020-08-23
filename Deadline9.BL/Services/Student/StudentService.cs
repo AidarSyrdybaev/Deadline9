@@ -8,10 +8,11 @@ using System.Text;
 
 namespace Deadline9.BL.Services
 {
-    public class TeacherService: ITeacherService
-    {   
+    public class StudentService
+    {
         private IUnitOfWorkFactory _unitOfWorkFactory { get; }
-        public TeacherService(IUnitOfWorkFactory unitOfWorkFactory)
+
+        public StudentService(IUnitOfWorkFactory unitOfWorkFactory)
         {
             _unitOfWorkFactory = unitOfWorkFactory;
         }
@@ -25,47 +26,47 @@ namespace Deadline9.BL.Services
             }
         }
 
-        public void Edit(TeacherEditModel model)
+        public void Edit(StudentEditModel model)
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                var Teacher = Mapper.Map<Teacher>(model);
-                _uow.Teachers.Update(Teacher);
+                var Student = Mapper.Map<Student>(model);
+                _uow.Students.Update(Student);
             }
         }
 
-        public TeacherEditModel GetEditModel(int Id)
+        public StudentEditModel GetEditModel(int Id)
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                var Speciality = _uow.Teachers.GetById(Id);
-                return Mapper.Map<TeacherEditModel>(Speciality);
+                var Student = _uow.Students.GetById(Id);
+                return Mapper.Map<StudentEditModel>(Student);
             }
         }
 
-        public void Create(TeacherCreateModel model)
+        public void Create(StudentCreateModel model)
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                var Teacher = Mapper.Map<Teacher>(model);
-                _uow.Teachers.Create(Teacher);
+                var Student = Mapper.Map<Student>(model);
+                _uow.Students.Create(Student);
             }
         }
 
-        public TeacherDetailsModel GetDetailsModel(int Id)
+        public StudentDetailsModel GetDetailsModel(int Id)
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                var Teacher = _uow.Teachers.GetById(Id);
-                return Mapper.Map<TeacherDetailsModel>(Teacher);
+                var Student = _uow.Students.GetById(Id);
+                return Mapper.Map<StudentDetailsModel>(Student);
             }
         }
 
-        public List<TeacherIndexModel> GetAll()
+        public List<StudentIndexModel> GetAll()
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                return Mapper.Map<List<TeacherIndexModel>>(_uow.Teachers.GetAll());
+                return Mapper.Map<List<StudentIndexModel>>(_uow.Students.GetAll());
             }
         }
     }

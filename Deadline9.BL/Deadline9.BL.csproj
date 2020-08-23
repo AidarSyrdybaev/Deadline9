@@ -14,9 +14,4 @@
     <ProjectReference Include="..\Deadline9.Models\Deadline9.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\Student\" />
-    <Folder Include="Services\Group\" />
-  </ItemGroup>
-
 </Project>

@@ -14,6 +14,7 @@ namespace Deadline9.BL.AutoMapper.Mappings
             DepartmentModeltoDepartmentEntityCreate();
             SpecialityModeltoSpecialityEntityCreate();
             EntityModelToEntityCreate<TeacherCreateModel, TeacherIndexModel, TeacherDetailsModel, TeacherEditModel, Teacher>();
+            EntityModelToEntityCreate<GroupCreateModel, GroupIndexModel, GroupDetailsModel, GroupEditModel, Group>();
         }
 
         private void DepartmentModeltoDepartmentEntityCreate()
@@ -36,7 +37,9 @@ namespace Deadline9.BL.AutoMapper.Mappings
             CreateMap<CreateModel, Entity>();
             CreateMap<Entity, EditMode>();
             CreateMap<EditMode, Entity>();
-            CreateMap<Teacher, IndexModel>();
+            CreateMap<Entity, IndexModel>();
+            CreateMap<Entity, DetailsModel>();
+            CreateMap<DetailsModel, Entity>();
         }
     }
 }
