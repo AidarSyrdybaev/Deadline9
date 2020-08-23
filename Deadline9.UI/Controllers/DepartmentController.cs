@@ -8,15 +8,15 @@ using Microsoft.EntityFrameworkCore;
 using DeadLine9.DAL.Context;
 using DeadLine9.DAL.Entities;
 using Deadline9.BL.Services;
-using Deadline9.Models.Department;
+using Deadline9.Models;
 
 namespace Deadline9.UI.Controllers
 {
-    public class DepartmentsController : Controller
+    public class DepartmentController : Controller
     {
         private IDepartmentService _DepartmentService { get; set; }
 
-        public DepartmentsController(IDepartmentService departmentService)
+        public DepartmentController(IDepartmentService departmentService)
         {
             _DepartmentService = departmentService;
         }
@@ -24,7 +24,7 @@ namespace Deadline9.UI.Controllers
        
         public async Task<IActionResult> Index()
         {
-            return View();
+            return View(_DepartmentService.GetAll());
         }
 
 
@@ -48,7 +48,7 @@ namespace Deadline9.UI.Controllers
         public async Task<IActionResult> Create(DepartmentCreateModel department)
         {
             _DepartmentService.Create(department);
-            return View();
+            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -58,15 +58,16 @@ namespace Deadline9.UI.Controllers
                 return NotFound();
             }
 
-            return View();
+            var Department = _DepartmentService.GetDepartmentModel(id.Value);
+            return View(Department);
         }
 
      
         [HttpPost]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(DepartmentModel model)
         {
-           
-            return View();
+            _DepartmentService.Edit(model);
+            return RedirectToAction("Index");
         }
 
        
@@ -76,7 +77,8 @@ namespace Deadline9.UI.Controllers
             {
                 return NotFound();
             }
-            return View();
+            _DepartmentService.Delete(id.Value);
+            return RedirectToAction("Index");
         }
     }
 }

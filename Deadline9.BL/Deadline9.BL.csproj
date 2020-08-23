@@ -6,11 +6,17 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DeadLine9.DAL\DeadLine9.DAL.csproj" />
     <ProjectReference Include="..\Deadline9.Models\Deadline9.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\Student\" />
+    <Folder Include="Services\Group\" />
   </ItemGroup>
 
 </Project>

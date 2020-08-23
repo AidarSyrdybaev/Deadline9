@@ -33,7 +33,7 @@ namespace DeadLine9.DAL.Repositories
 
         public virtual IEnumerable<T> GetAll()
         {
-            return entities;
+            return entities.ToList();
         }
 
         public T Update(T entity)

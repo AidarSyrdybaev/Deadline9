@@ -1,4 +1,5 @@
-﻿using Deadline9.Models.Department;
+﻿using Deadline9.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,5 +17,9 @@ namespace Deadline9.BL.Services
         public void Details(int Id);
 
         public List<DepartmentModel> GetAll();
+
+        public DepartmentModel GetDepartmentModel(int Id);
+
+        public SelectList GetDepartmentsSelectListItems();
     }
 }

@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
-using Deadline9.Models.Department;
+using Deadline9.Models;
 using DeadLine9.DAL.Context;
 using DeadLine9.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Deadline9.BL.Services
 {
@@ -35,6 +36,15 @@ namespace Deadline9.BL.Services
             }
         }
 
+        public DepartmentModel GetDepartmentModel(int Id)
+        {
+            using (var _uow = _unitOfWorkFactory.Create())
+            {
+                var Department = _uow.Departments.GetById(Id);
+                return Mapper.Map<DepartmentModel>(Department);
+            }
+        }
+
         public void Create(DepartmentCreateModel model)
         {
             using (var _uow = _unitOfWorkFactory.Create())
@@ -42,6 +52,15 @@ namespace Deadline9.BL.Services
                 var Department = Mapper.Map<Department>(model);
                 _uow.Departments.Create(Department);
 
+            }
+        }
+
+        public SelectList GetDepartmentsSelectListItems()
+        {
+            using (var _uow = _unitOfWorkFactory.Create())
+            {
+                SelectList Departments = new SelectList(_uow.Departments.GetAll(), "Id", "Name");
+                return Departments;
             }
         }
 

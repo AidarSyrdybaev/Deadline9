@@ -5,10 +5,12 @@ using System.Text;
 
 namespace Deadline9.Models
 {
-    public class DepartmentCreateModel
-    {   
-        [Required]
+    public class SpecialtyEditModel
+    {
+        public int Id { get; set; }
         [Display(Name = "Наименование")]
         public string Name { get; set; }
+        [Display(Name = "Факультет")]
+        public int DepartmentId { get; set; }
     }
 }

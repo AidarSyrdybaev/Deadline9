@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Deadline9.Models
+namespace Deadline9.BL.Services
 {
-    public class DepartmentDetailsModel
+    public interface ITeacherService
     {
     }
 }

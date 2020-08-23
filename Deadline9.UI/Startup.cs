@@ -48,6 +48,8 @@ namespace Deadline9.UI
 
             services.AddScoped<IDepartmentService, DepartmentService>();
 
+            services.AddScoped<ISpecialtyService, SpecialtyService>();
+
             services.AddRazorPages();
             Mapper.Initialize(m => m.AddProfile(new MappingProfile()));
         }
