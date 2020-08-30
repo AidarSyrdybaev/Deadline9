@@ -9,11 +9,11 @@ using System.Text;
 
 namespace Deadline9.BL.Services
 {
-    public class StudentService: IStudentService
+    public class PointService: IPointService
     {
         private IUnitOfWorkFactory _unitOfWorkFactory { get; }
 
-        public StudentService(IUnitOfWorkFactory unitOfWorkFactory)
+        public PointService(IUnitOfWorkFactory unitOfWorkFactory)
         {
             _unitOfWorkFactory = unitOfWorkFactory;
         }
@@ -22,52 +22,52 @@ namespace Deadline9.BL.Services
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                var Student = _uow.Students.GetById(Id);
-                _uow.Students.Remove(Student);
+                var Point = _uow.Points.GetById(Id);
+                _uow.Points.Remove(Point);
             }
         }
 
-        public void Edit(StudentEditModel model)
+        public void Edit(PointEditModel model)
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                var Student = Mapper.Map<Student>(model);
-                _uow.Students.Update(Student);
+                var Point = Mapper.Map<Point>(model);
+                _uow.Points.Update(Point);
             }
         }
 
-        public StudentEditModel GetEditModel(int Id)
+        public PointEditModel GetEditModel(int Id)
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                var Student = _uow.Students.GetById(Id);
-                return Mapper.Map<StudentEditModel>(Student);
+                var Point = _uow.Points.GetById(Id);
+                return Mapper.Map<PointEditModel>(Point);
             }
         }
 
-        public void Create(StudentCreateModel model)
+        public void Create(PointCreateModel model)
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                var Student = Mapper.Map<Student>(model);
-                _uow.Students.Create(Student);
+                var Point = Mapper.Map<Point>(model);
+                _uow.Points.Create(Point);
             }
         }
 
-        public StudentDetailsModel GetDetailsModel(int Id)
+        public PointDetailsModel GetDetailsModel(int Id)
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                var Student = _uow.Students.GetById(Id);
-                return Mapper.Map<StudentDetailsModel>(Student);
+                var Point = _uow.Points.GetFullPoint(Id);
+                return Mapper.Map<PointDetailsModel>(Point);
             }
         }
 
-        public List<StudentIndexModel> GetAll()
+        public List<PointIndexModel> GetAll()
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                return Mapper.Map<List<StudentIndexModel>>(_uow.Students.GetAll());
+                return Mapper.Map<List<PointIndexModel>>(_uow.Points.GetFullPoints());
             }
         }
 
@@ -75,7 +75,7 @@ namespace Deadline9.BL.Services
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                return new SelectList(_uow.Students.GetAll(), "Id", "Name");
+                return new SelectList(_uow.Points.GetAll(), "Id", "Name");
             }
         }
     }

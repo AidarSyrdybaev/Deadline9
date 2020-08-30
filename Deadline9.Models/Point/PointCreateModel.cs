@@ -4,7 +4,13 @@ using System.Text;
 
 namespace Deadline9.Models
 {
-    class PointCreateModel
+    public class PointCreateModel
     {
+
+        public int Semester { get; set; }
+
+        public int Ball { get; set; }
+
+        public int StudentId { get; set; }
     }
 }

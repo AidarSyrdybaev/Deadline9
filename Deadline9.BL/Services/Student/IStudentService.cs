@@ -1,4 +1,5 @@
 ﻿using Deadline9.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,5 +19,7 @@ namespace Deadline9.BL.Services
         public StudentDetailsModel GetDetailsModel(int Id);
 
         public List<StudentIndexModel> GetAll();
+
+        public SelectList GetSelectListItems();
     }
 }

@@ -60,6 +60,8 @@ namespace Deadline9.UI
 
             services.AddScoped<ILectureService, LectureService>();
 
+            services.AddScoped<IPointService, PointService>();
+
             services.AddRazorPages();
             Mapper.Initialize(m => m.AddProfile(new MappingProfile()));
         }

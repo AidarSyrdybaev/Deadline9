@@ -12,19 +12,21 @@ using Deadline9.Models;
 
 namespace Deadline9.UI.Controllers
 {
-    public class LessionsController : Controller
+    public class PointController : Controller
     {
-        private ILessionService _lessionService { get;}
+        private IPointService _pointService { get; }
+        private IStudentService _studentService { get; }
 
-        public LessionsController(ILessionService lessionService)
+        public PointController(IPointService pointService, IStudentService studentService)
         {
-            _lessionService = lessionService;
+            _pointService = pointService;
+            _studentService = studentService;
         }
 
         // GET: Lessions
         public async Task<IActionResult> Index()
         {
-            return View(_lessionService.GetAll());
+            return View(_pointService.GetAll());
         }
 
         // GET: Lessions/Details/5
@@ -35,7 +37,7 @@ namespace Deadline9.UI.Controllers
                 return NotFound();
             }
 
-            var lession = _lessionService.GetDetailsModel(id.Value);
+            var lession = _pointService.GetDetailsModel(id.Value);
 
             return View(lession);
         }
@@ -43,6 +45,7 @@ namespace Deadline9.UI.Controllers
         // GET: Lessions/Create
         public IActionResult Create()
         {
+            ViewBag.Students = _studentService.GetSelectListItems();
             return View();
         }
 
@@ -50,9 +53,9 @@ namespace Deadline9.UI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public async Task<IActionResult> Create(LessionCreateModel model)
+        public async Task<IActionResult> Create(PointCreateModel model)
         {
-            _lessionService.Create(model);
+            _pointService.Create(model);
             return RedirectToAction("Index");
         }
 
@@ -63,8 +66,8 @@ namespace Deadline9.UI.Controllers
             {
                 return NotFound();
             }
-
-            var model = _lessionService.GetEditModel(id.Value);
+            ViewBag.Students = _studentService.GetSelectListItems();
+            var model = _pointService.GetEditModel(id.Value);
             return View(model);
         }
 
@@ -72,9 +75,9 @@ namespace Deadline9.UI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public async Task<IActionResult> Edit(LessionEditModel lessionEditModel)
+        public async Task<IActionResult> Edit(PointEditModel PointEditModel)
         {
-            _lessionService.Edit(lessionEditModel);
+            _pointService.Edit(PointEditModel);
             return RedirectToAction("Index");
         }
 
@@ -86,9 +89,8 @@ namespace Deadline9.UI.Controllers
                 return NotFound();
             }
 
-            _lessionService.Delete(id.Value);
+            _pointService.Delete(id.Value);
             return RedirectToAction("Index");
         }
-
     }
 }
