@@ -9,11 +9,11 @@ using System.Text;
 
 namespace Deadline9.BL.Services
 {
-    public class GroupService: IGroupService
+    public class LectureService: ILectureService
     {
         private IUnitOfWorkFactory _unitOfWorkFactory { get; }
 
-        public GroupService(IUnitOfWorkFactory unitOfWorkFactory)
+        public LectureService(IUnitOfWorkFactory unitOfWorkFactory)
         {
             _unitOfWorkFactory = unitOfWorkFactory;
         }
@@ -22,57 +22,52 @@ namespace Deadline9.BL.Services
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                var Group = _uow.Groups.GetById(Id);
-                _uow.Groups.Remove(Group);
+                var Lecture = _uow.Lectures.GetById(Id);
+                _uow.Lectures.Remove(Lecture);
             }
         }
 
-        public void Edit(GroupEditModel model)
+        public void Edit(LectureEditModel model)
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                var Group = Mapper.Map<Group>(model);
-                _uow.Groups.Update(Group);
+                var Lecture = Mapper.Map<Lecture>(model);
+                _uow.Lectures.Update(Lecture);
             }
         }
 
-        public GroupEditModel GetEditModel(int Id)
+        public LectureEditModel GetEditModel(int Id)
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                var Speciality = _uow.Groups.GetById(Id);
-                return Mapper.Map<GroupEditModel>(Speciality);
+                var Lession = _uow.Lectures.GetById(Id);
+                return Mapper.Map<LectureEditModel>(Lession);
             }
         }
 
-        public void Create(GroupCreateModel model)
+        public void Create(LectureCreateModel model)
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                var Group = Mapper.Map<Group>(model);
-                _uow.Groups.Create(Group);
+                var Lecture = Mapper.Map<Lecture>(model);
+                _uow.Lectures.Create(Lecture);
             }
         }
 
-        public void Details(int Id)
-        {
-
-        }
-
-        public List<GroupIndexModel> GetAll()
+        public LectureDetailsModel GetDetailsModel(int Id)
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                return Mapper.Map<List<GroupIndexModel>>(_uow.Groups.GetAll());
+                var Lecture = _uow.Lectures.GetById(Id);
+                return Mapper.Map<LectureDetailsModel>(Lecture);
             }
         }
 
-        public SelectList GetSelectListItems()
+        public List<LectureIndexModel> GetAll()
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                SelectList Groups = new SelectList(_uow.Groups.GetAll(), "Id", "Name");
-                return Groups;
+                return Mapper.Map<List<LectureIndexModel>>(_uow.Lessions.GetAll());
             }
         }
     }

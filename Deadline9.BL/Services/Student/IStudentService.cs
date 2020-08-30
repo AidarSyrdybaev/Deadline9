@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Deadline9.BL.Services
 {
-    interface IStudentService
+    public interface IStudentService
     {
         public void Delete(int Id);
 

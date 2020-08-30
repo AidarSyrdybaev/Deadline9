@@ -7,5 +7,6 @@ namespace Deadline9.Models
 {
     public class LessionCreateModel
     {
+        public string Name { get; set; }
     }
 }

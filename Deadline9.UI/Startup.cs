@@ -54,6 +54,12 @@ namespace Deadline9.UI
 
             services.AddScoped<IGroupService, GroupService>();
 
+            services.AddScoped<IStudentService, StudentService>();
+
+            services.AddScoped<ILessionService, LessionService >();
+
+            services.AddScoped<ILectureService, LectureService>();
+
             services.AddRazorPages();
             Mapper.Initialize(m => m.AddProfile(new MappingProfile()));
         }

@@ -6,5 +6,8 @@ namespace Deadline9.Models
 {
     public class LessionDetailsModel
     {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
     }
 }

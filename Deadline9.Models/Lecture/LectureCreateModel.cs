@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Deadline9.Models
 {
-    class LectureCreateModel
+    public class LectureCreateModel
     {
     }
 }

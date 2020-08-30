@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Deadline9.BL.Services
 {
-    public class StudentService
+    public class StudentService: IStudentService
     {
         private IUnitOfWorkFactory _unitOfWorkFactory { get; }
 
@@ -21,8 +21,8 @@ namespace Deadline9.BL.Services
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                var Teacher = _uow.Teachers.GetById(Id);
-                _uow.Teachers.Remove(Teacher);
+                var Student = _uow.Students.GetById(Id);
+                _uow.Students.Remove(Student);
             }
         }
 
