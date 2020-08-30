@@ -58,7 +58,7 @@ namespace Deadline9.BL.Services
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                var Lecture = _uow.Lectures.GetById(Id);
+                var Lecture = _uow.Lectures.GetFullLecture(Id);
                 return Mapper.Map<LectureDetailsModel>(Lecture);
             }
         }
@@ -67,7 +67,7 @@ namespace Deadline9.BL.Services
         {
             using (var _uow = _unitOfWorkFactory.Create())
             {
-                return Mapper.Map<List<LectureIndexModel>>(_uow.Lessions.GetAll());
+                return Mapper.Map<List<LectureIndexModel>>(_uow.Lectures.GetLectureOnLession());
             }
         }
     }

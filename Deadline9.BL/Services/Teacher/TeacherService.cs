@@ -2,6 +2,7 @@
 using Deadline9.Models;
 using DeadLine9.DAL.Context;
 using DeadLine9.DAL.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -66,6 +67,14 @@ namespace Deadline9.BL.Services
             using (var _uow = _unitOfWorkFactory.Create())
             {
                 return Mapper.Map<List<TeacherIndexModel>>(_uow.Teachers.GetAll());
+            }
+        }
+
+        public SelectList GetSelectListItems()
+        {
+            using (var _uow = _unitOfWorkFactory.Create())
+            {
+                return new SelectList(_uow.Teachers.GetAll(), "Id", "Name");
             }
         }
     }

@@ -15,10 +15,15 @@ namespace Deadline9.UI.Controllers
     public class LectureController : Controller
     {
         private ILectureService _lectureService { get; }
-
-        public LectureController(ILectureService lectureService)
+        private IGroupService _groupService { get; }
+        private ITeacherService _teacherService { get; }
+        private ILessionService _lessionService { get; }
+        public LectureController(ILectureService lectureService, IGroupService groupService, ITeacherService teacherService, ILessionService lessionService)
         {
             _lectureService = lectureService;
+            _groupService = groupService;
+            _teacherService = teacherService;
+            _lessionService = lessionService;
         }
 
         // GET: Lessions
@@ -43,6 +48,9 @@ namespace Deadline9.UI.Controllers
         // GET: Lessions/Create
         public IActionResult Create()
         {
+            ViewBag.Teachers = _teacherService.GetSelectListItems();
+            ViewBag.Lessions = _lessionService.GetSelectListItems();
+            ViewBag.Groups = _groupService.GetSelectListItems();
             return View();
         }
 
@@ -58,12 +66,14 @@ namespace Deadline9.UI.Controllers
 
         // GET: Lessions/Edit/5
         public async Task<IActionResult> Edit(int? id)
-        {
+        {   
             if (id == null)
             {
                 return NotFound();
             }
-
+            ViewBag.Teachers = _teacherService.GetSelectListItems();
+            ViewBag.Lessions = _lessionService.GetSelectListItems();
+            ViewBag.Groups = _groupService.GetSelectListItems();
             var model = _lectureService.GetEditModel(id.Value);
             return View(model);
         }

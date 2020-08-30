@@ -7,5 +7,8 @@ namespace DeadLine9.DAL.Repositories.Contracts
 {
     public interface ILectureRepository: IRepository<Lecture>
     {
+        Lecture GetFullLecture(int Id);
+
+        List<Lecture> GetLectureOnLession();
     }
 }
