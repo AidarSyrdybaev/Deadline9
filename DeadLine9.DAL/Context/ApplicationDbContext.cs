@@ -1,4 +1,5 @@
 ﻿using DeadLine9.DAL.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace DeadLine9.DAL.Context
 {
-    public class ApplicationDbContext: DbContext
+    public class ApplicationDbContext: IdentityDbContext<User, Role, int>
     {
 
         public DbSet<Department> Departments { get; set; }

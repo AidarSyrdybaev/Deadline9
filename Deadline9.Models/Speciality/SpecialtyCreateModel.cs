@@ -8,9 +8,10 @@ namespace Deadline9.Models
     public class SpecialtyCreateModel
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Факультет обязателен")]
         [Display(Name = "Наименование")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Факультет обязателен")]
         [Display(Name = "Факультет")]
         public int DepartmentId { get; set; }
     }

@@ -9,15 +9,15 @@ namespace Deadline9.Models
     {
         public int Id { get; set; }
 
-        public Lession Lession { get; set; }
+        public string LessionName { get; set; }
 
         public int LessionId { get; set; }
 
-        public Teacher Teacher { get; set; }
+        public string TeacherName { get; set; }
 
         public int TeacherId { get; set; }
 
-        public Group Group { get; set; }
+        public string GroupName { get; set; }
 
         public int GroupId { get; set; }
     }

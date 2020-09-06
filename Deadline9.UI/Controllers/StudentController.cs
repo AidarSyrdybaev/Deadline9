@@ -9,9 +9,12 @@ using DeadLine9.DAL.Context;
 using DeadLine9.DAL.Entities;
 using Deadline9.BL.Services;
 using Deadline9.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Deadline9.UI.Controllers
 {
+
+    [Authorize]
     public class StudentController : Controller
     {
         private IStudentService _studentService { get; }
@@ -22,8 +25,8 @@ namespace Deadline9.UI.Controllers
             _studentService = studentService;
             _groupService = groupService;
         }
-
-        // GET: Student
+        [AllowAnonymous]
+        [Route("Students")]
         public async Task<IActionResult> Index()
         {
             var Students = _studentService.GetAll();

@@ -15,6 +15,8 @@ using Microsoft.Extensions.Hosting;
 using AutoMapper;
 using Deadline9.BL.Services;
 using Deadline9.BL.AutoMapper.Mappings;
+using DeadLine9.DAL.Entities;
+using Deadline9.Models;
 
 namespace Deadline9.UI
 {
@@ -30,6 +32,10 @@ namespace Deadline9.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews(opts =>
+            {
+                opts.ModelBinderProviders.Insert(0, new PointModelBinderProvider());
+            });
             string connectionString = Configuration.GetConnectionString("MainConnectionString");
 
             var optionsBuilder = new DbContextOptionsBuilder();
@@ -44,6 +50,9 @@ namespace Deadline9.UI
             {
                 options.UseSqlServer(connectionString);
             });
+
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddSingleton<IUnitOfWorkFactory, UnitOfWorkFactory>();
 
             services.AddScoped<IDepartmentService, DepartmentService>();
@@ -64,6 +73,8 @@ namespace Deadline9.UI
 
             services.AddRazorPages();
             Mapper.Initialize(m => m.AddProfile(new MappingProfile()));
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,6 +94,8 @@ namespace Deadline9.UI
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

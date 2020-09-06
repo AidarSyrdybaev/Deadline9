@@ -13,12 +13,15 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="LessionId" class="control-label"></label>
                 @Html.DropDownListFor(model => model.LessionId, ViewBag.Lessions as SelectList);
             </div>
             <div class="form-group">
+                <label asp-for="TeacherId" class="control-label"></label>
                 @Html.DropDownListFor(model => model.TeacherId, ViewBag.Teachers as SelectList);
             </div>
             <div class="form-group">
+                <label asp-for="GroupId" class="control-label"></label>
                 @Html.DropDownListFor(model => model.GroupId, ViewBag.Groups as SelectList);
             </div>
             <div class="form-group">

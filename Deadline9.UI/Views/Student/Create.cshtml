@@ -33,7 +33,9 @@
                 </label>
             </div>
             <div class="form-group">
+                <label asp-for="GroupId" class="control-label"></label>
                 @Html.DropDownListFor(model => model.GroupId, ViewBag.Groups as SelectList);
+                <span asp-validation-for="GroupId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

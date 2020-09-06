@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Deadline9.BL.Services;
 using Deadline9.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Deadline9.UI.Controllers
 {
+    [Authorize]
     public class SpecialtyController : Controller
     {
         private IDepartmentService _DepartmentService { get; }
@@ -19,7 +21,8 @@ namespace Deadline9.UI.Controllers
             _DepartmentService = departmentService;
             _SpecialtyService = specialtyService;
         }
-
+        [AllowAnonymous]
+        [Route("Specalties")]
         public ActionResult Index()
         {
             var Specialties = _SpecialtyService.GetAll();

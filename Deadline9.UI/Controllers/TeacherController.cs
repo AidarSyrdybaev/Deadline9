@@ -9,9 +9,11 @@ using DeadLine9.DAL.Context;
 using DeadLine9.DAL.Entities;
 using Deadline9.BL.Services;
 using Deadline9.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Deadline9.UI.Controllers
-{
+{   
+    [Authorize]
     public class TeacherController : Controller
     {
         private ITeacherService _TeacherSerivce { get; }
@@ -20,11 +22,15 @@ namespace Deadline9.UI.Controllers
         {
             _TeacherSerivce = teacherService;
         }
-
-        // GET: Teacher
+        [AllowAnonymous]
+        [Route("Teachers")]
         public async Task<IActionResult> Index()
-        {   
-            
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return Content(User.Identity.Name);
+            }
+
             return View(_TeacherSerivce.GetAll());
         }
 

@@ -9,9 +9,11 @@ using DeadLine9.DAL.Context;
 using DeadLine9.DAL.Entities;
 using Deadline9.BL.Services;
 using Deadline9.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Deadline9.UI.Controllers
 {
+    [Authorize]
     public class GroupController : Controller
     {
         private IGroupService _groupSerivce { get; }
@@ -22,8 +24,8 @@ namespace Deadline9.UI.Controllers
             _groupSerivce = groupSerivce;
             _specialtyService = specialtyService;
         }
-
-        // GET: Groups
+        [AllowAnonymous]
+        [Route("Groups")]
         public async Task<IActionResult> Index()
         {
             return View(_groupSerivce.GetAll());
