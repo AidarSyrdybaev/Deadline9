@@ -91,6 +91,20 @@ namespace Deadline9.UI.Controllers
             _lessionService.Delete(id.Value);
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public async Task<IActionResult> Like(int Id)
+        {
+            try
+            {
+                var likes = _lessionService.Like(Id);
+
+                return Ok(likes);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
 
     }
 }

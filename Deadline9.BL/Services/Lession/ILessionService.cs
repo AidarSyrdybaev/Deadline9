@@ -21,5 +21,7 @@ namespace Deadline9.BL.Services
         public List<LessionIndexModel> GetAll();
 
         public SelectList GetSelectListItems();
+
+        public int Like(int Id);
     }
 }

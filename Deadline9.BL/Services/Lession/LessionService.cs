@@ -78,5 +78,16 @@ namespace Deadline9.BL.Services
                 return new SelectList(_uow.Lessions.GetAll(), "Id", "Name");
             }
         }
+
+        public int Like(int Id)
+        {
+            using (var _uow = _unitOfWorkFactory.Create())
+            {
+                var Lession = _uow.Lessions.GetById(Id);
+                Lession.Like++;
+                _uow.Lessions.Update(Lession);
+                return Lession.Like;
+            }
+        }
     }
 }
