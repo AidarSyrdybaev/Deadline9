@@ -119,7 +119,7 @@ namespace Deadline9.Tests
     public class FakeSignInManager : SignInManager<User>
     {
         public FakeSignInManager()
-            : base(new FakeUserManager(),
+            : base(GetMockUserManager().Object,
             new Mock<IHttpContextAccessor>().Object,
             new Mock<IUserClaimsPrincipalFactory<User>>().Object,
             new Mock<IOptions<IdentityOptions>>().Object,
@@ -127,6 +127,13 @@ namespace Deadline9.Tests
             new Mock<IAuthenticationSchemeProvider>().Object, 
             new Mock<IUserConfirmation<User>>().Object)
         { }
+
+        private static Mock<UserManager<User>> GetMockUserManager()
+        {
+            var userStoreMock = new Mock<IUserStore<User>>();
+            return new Mock<UserManager<User>>(
+                userStoreMock.Object, null, null, null, null, null, null, null, null);
+        }
     }
 
     public class FakeUserManager : UserManager<User>

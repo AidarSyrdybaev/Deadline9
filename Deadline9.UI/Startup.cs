@@ -12,7 +12,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AutoMapper;
 using Deadline9.BL.Services;
 using Deadline9.BL.AutoMapper.Mappings;
 using DeadLine9.DAL.Entities;
@@ -39,7 +38,7 @@ namespace Deadline9.UI
             string connectionString = Configuration.GetConnectionString("MainConnectionString");
 
             var optionsBuilder = new DbContextOptionsBuilder();
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseNpgsql(connectionString);
 
             services.AddSingleton<IApplicationDbContextFactory>(
                 sp => new ApplicationDbContextFactory(
@@ -48,7 +47,8 @@ namespace Deadline9.UI
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(connectionString);
+                options.UseNpgsql(connectionString);
+                
             });
 
             services.AddIdentity<User, Role>()
