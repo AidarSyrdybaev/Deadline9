@@ -26,11 +26,6 @@ namespace Deadline9.UI.Controllers
         [Route("Teachers")]
         public async Task<IActionResult> Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return Content(User.Identity.Name);
-            }
-
             return View(_TeacherSerivce.GetAll());
         }
 

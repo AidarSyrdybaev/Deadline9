@@ -31,10 +31,10 @@ namespace Deadline9.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews(opts =>
-            {
-                opts.ModelBinderProviders.Insert(0, new PointModelBinderProvider());
-            });
+            //services.AddControllersWithViews(opts =>
+            //{
+            //    opts.ModelBinderProviders.Insert(0, new PointModelBinderProvider());
+            //});
             string connectionString = Configuration.GetConnectionString("MainConnectionString");
 
             var optionsBuilder = new DbContextOptionsBuilder();
@@ -46,7 +46,7 @@ namespace Deadline9.UI
                 ));
 
             services.AddDbContext<ApplicationDbContext>(options =>
-            {
+        {
                 options.UseNpgsql(connectionString);
                 
             });
